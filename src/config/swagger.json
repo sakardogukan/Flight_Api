@@ -1,0 +1,1479 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "FlightApi",
+    "description": "FlightApi is node.js project. Used Tech: Node.Js | Express.Js | Mongoose - MongoDB SQL | Authorization And Permissions with JWT (Json Web Token) | Password Crypto | Documentation: Swagger/Redoc/Json | Logging",
+    "termsOfService": "http://localhost",
+    "contact": {
+      "name": "flight_api",
+      "email": "sakardogukan@gmail.com"
+    },
+    "license": {
+      "name": "ISC"
+    }
+  },
+  "host": "127.0.0.1:8000",
+  "basePath": "/",
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "securityDefinitions": {
+    "JWT": {
+      "type": "apiKey",
+      "in": "header",
+      "name": "Authorization",
+      "description": "Enter Your AccessToken (JWT) for Login. Example: <b>Bearer <i>...accessToken...</b></b>"
+    }
+  },
+  "paths": {
+    "/auth/login": {
+      "post": {
+        "tags": [
+          "Authentication"
+        ],
+        "summary": "Login",
+        "description": "Login with username and password",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "username": {
+                  "type": "string",
+                  "example": "test"
+                },
+                "password": {
+                  "type": "string",
+                  "example": "1234"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/auth/refresh": {
+      "post": {
+        "tags": [
+          "Authentication"
+        ],
+        "summary": "Token Refresh",
+        "description": "Refresh accessToken with  ",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "token": {
+                  "type": "object",
+                  "properties": {
+                    "refresh": {
+                      "type": "string",
+                      "example": "...refreshToken..."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/auth/logout": {
+      "get": {
+        "tags": [
+          "Authentication"
+        ],
+        "summary": "Logout",
+        "description": "No need any doing for logout. You must deleted Bearer Token from your browser.",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/users/": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "List Users",
+        "description": "\r  You can send query with endpoint for search[], sort[], page and limit.\r  <ul> Examples:\r   <li>URL?<b>search[field1]=value1&search[field2]=value2</b></li>\r   <li>URL?<b>sort[field1]=1&sort[field2]=-1</b></li>\r   <li>URL?<b>page=2&limit=1</b></li>\r  ",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Create a User",
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "username": {
+                  "type": "string",
+                  "example": "test"
+                },
+                "password": {
+                  "type": "string",
+                  "example": "1234"
+                },
+                "email": {
+                  "type": "string",
+                  "example": "test@site.com"
+                },
+                "isActive": {
+                  "type": "boolean",
+                  "example": true
+                },
+                "isStaff": {
+                  "type": "boolean",
+                  "example": false
+                },
+                "isAdmin": {
+                  "type": "boolean",
+                  "example": false
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          }
+        }
+      }
+    },
+    "/users/{id}": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Get single user",
+        "description": "\r  A record containing \"UserID\" is called up.\r  <ul> Examples:\r   <li> URL/<b>userId</b></li>\r  </ul>\r  ",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Update a User",
+        "description": "\r  A record containing \"UserID\" is called up. Then, the update is made with the values ​​in the \"body\".\r  <ul> Examples:\r  <li> URL/<b>userId</b></li>\r  </ul>\r  ",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "username": {
+                  "type": "string",
+                  "example": "test"
+                },
+                "password": {
+                  "type": "string",
+                  "example": "1234"
+                },
+                "email": {
+                  "type": "string",
+                  "example": "test@site.com"
+                },
+                "isActive": {
+                  "type": "boolean",
+                  "example": true
+                },
+                "isStaff": {
+                  "type": "boolean",
+                  "example": false
+                },
+                "isAdmin": {
+                  "type": "boolean",
+                  "example": false
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Accepted"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Delete a User",
+        "description": "\r  <ul> Examples:\r   <li> URL/<b>userId</b></li>\r  </ul>\r  ",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "createdId": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Update a User",
+        "description": "\r  A record containing \"UserID\" is called up. Then, the update is made with the values ​​in the \"body\".\r  <ul> Examples:\r  <li> URL/<b>userId</b></li>\r  </ul>\r  ",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "username": {
+                  "type": "string",
+                  "example": "test"
+                },
+                "password": {
+                  "type": "string",
+                  "example": "1234"
+                },
+                "email": {
+                  "type": "string",
+                  "example": "test@site.com"
+                },
+                "isActive": {
+                  "type": "boolean",
+                  "example": true
+                },
+                "isStaff": {
+                  "type": "boolean",
+                  "example": false
+                },
+                "isAdmin": {
+                  "type": "boolean",
+                  "example": false
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Accepted"
+          }
+        }
+      }
+    },
+    "/flights/": {
+      "get": {
+        "tags": [
+          "Flights"
+        ],
+        "summary": "List Flights",
+        "description": "\r  You can send query with endpoint for search[], sort[], page and limit.\r  <ul> Examples:\r   <li>URL?<b>search[field1]=value1&search[field2]=value2</b></li>\r   <li>URL?<b>sort[field1]=1&sort[field2]=-1</b></li>\r   <li>URL?<b>page=2&limit=1</b></li>\r  ",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Flights"
+        ],
+        "summary": "Create a Flight",
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "flightNumber": {
+                  "type": "string",
+                  "example": "IS-AN-005"
+                },
+                "airline": {
+                  "type": "string",
+                  "example": "THY"
+                },
+                "departure": {
+                  "type": "string",
+                  "example": "ISTANBUL"
+                },
+                "departureDate": {
+                  "type": "string",
+                  "example": "2020-10-01 10:00:00"
+                },
+                "arrival": {
+                  "type": "string",
+                  "example": "ANKARA"
+                },
+                "arrivalDate": {
+                  "type": "string",
+                  "example": "2020-10-01 12:00:00"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          }
+        }
+      }
+    },
+    "/flights/{id}": {
+      "get": {
+        "tags": [
+          "Flights"
+        ],
+        "summary": "Get single flight",
+        "description": "\r  A record containing \"flightID\" is called up.\r  <ul> Examples:\r   <li> URL/<b>flightId</b></li>\r  </ul>\r  ",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Flights"
+        ],
+        "summary": "Update a Flight",
+        "description": "\r  A record containing \"FlightID\" is called up. Then, the update is made with the values ​​in the \"body\".\r  <ul> Examples:\r  <li> URL/<b>flightId</b></li>\r  </ul>\r  ",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "flightNumber": {
+                  "type": "string",
+                  "example": "IS-AN-005"
+                },
+                "airline": {
+                  "type": "string",
+                  "example": "THY"
+                },
+                "departure": {
+                  "type": "string",
+                  "example": "ISTANBUL"
+                },
+                "departureDate": {
+                  "type": "string",
+                  "example": "2020-10-01 10:00:00"
+                },
+                "arrival": {
+                  "type": "string",
+                  "example": "ANKARA"
+                },
+                "arrivalDate": {
+                  "type": "string",
+                  "example": "2020-10-01 12:00:00"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Accepted"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Flights"
+        ],
+        "summary": "Delete a Flight",
+        "description": "\r  <ul> Examples:\r   <li> URL/<b>flightId</b></li>\r  </ul>\r  ",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "createdId": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Flights"
+        ],
+        "summary": "Update a Flight",
+        "description": "\r  A record containing \"FlightID\" is called up. Then, the update is made with the values ​​in the \"body\".\r  <ul> Examples:\r  <li> URL/<b>flightId</b></li>\r  </ul>\r  ",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "flightNumber": {
+                  "type": "string",
+                  "example": "IS-AN-005"
+                },
+                "airline": {
+                  "type": "string",
+                  "example": "THY"
+                },
+                "departure": {
+                  "type": "string",
+                  "example": "ISTANBUL"
+                },
+                "departureDate": {
+                  "type": "string",
+                  "example": "2020-10-01 10:00:00"
+                },
+                "arrival": {
+                  "type": "string",
+                  "example": "ANKARA"
+                },
+                "arrivalDate": {
+                  "type": "string",
+                  "example": "2020-10-01 12:00:00"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Accepted"
+          }
+        }
+      }
+    },
+    "/passengers/": {
+      "get": {
+        "tags": [
+          "Passengers"
+        ],
+        "summary": "List Passengers",
+        "description": "\r  You can send query with endpoint for search[], sort[], page and limit.\r  <ul> Examples:\r   <li>URL?<b>search[field1]=value1&search[field2]=value2</b></li>\r   <li>URL?<b>sort[field1]=1&sort[field2]=-1</b></li>\r   <li>URL?<b>page=2&limit=1</b></li>\r  ",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Passengers"
+        ],
+        "summary": "Create a Passenger",
+        "description": "See the example below to add a record.",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "firstName": {
+                  "type": "string",
+                  "example": "test"
+                },
+                "lastName": {
+                  "type": "string",
+                  "example": "test"
+                },
+                "gender": {
+                  "type": "string",
+                  "example": "M"
+                },
+                "email": {
+                  "type": "string",
+                  "example": "test@test.com"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          }
+        }
+      }
+    },
+    "/passengers/{id}": {
+      "get": {
+        "tags": [
+          "Passengers"
+        ],
+        "summary": "Get single Passenger",
+        "description": "\r  A record containing \"passengerID\" is called up.\r  <ul> Examples:\r   <li> URL/<b>passengerId</b></li>\r  </ul>\r  ",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Passengers"
+        ],
+        "summary": "Update a Passenger",
+        "description": "\r  A record containing \"passengerID\" is called up. Then, the update is made with the values ​​in the \"body\".\r  <ul> Examples:\r  <li> URL/<b>passengerId</b></li>\r  </ul>\r  ",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "firstName": {
+                  "type": "string",
+                  "example": "test"
+                },
+                "lastName": {
+                  "type": "string",
+                  "example": "test"
+                },
+                "gender": {
+                  "type": "string",
+                  "example": "M"
+                },
+                "email": {
+                  "type": "string",
+                  "example": "test@test.com"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Accepted"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Passengers"
+        ],
+        "summary": "Delete a Passenger",
+        "description": "\r  <ul> Examples:\r   <li> URL/<b>passengerId</b></li>\r  </ul>\r  ",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "createdId": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Passengers"
+        ],
+        "summary": "Update a Passenger",
+        "description": "\r  A record containing \"passengerID\" is called up. Then, the update is made with the values ​​in the \"body\".\r  <ul> Examples:\r  <li> URL/<b>passengerId</b></li>\r  </ul>\r  ",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "firstName": {
+                  "type": "string",
+                  "example": "test"
+                },
+                "lastName": {
+                  "type": "string",
+                  "example": "test"
+                },
+                "gender": {
+                  "type": "string",
+                  "example": "M"
+                },
+                "email": {
+                  "type": "string",
+                  "example": "test@test.com"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Accepted"
+          }
+        }
+      }
+    },
+    "/reservations/": {
+      "get": {
+        "tags": [
+          "Reservations"
+        ],
+        "summary": "List Reservations",
+        "description": "\r  You can send query with endpoint for search[], sort[], page and limit.\r  <ul> Examples:\r   <li>URL?<b>search[field1]=value1&search[field2]=value2</b></li>\r   <li>URL?<b>sort[field1]=1&sort[field2]=-1</b></li>\r   <li>URL?<b>page=2&limit=1</b></li>\r  ",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Reservations"
+        ],
+        "summary": "Create a Reservation",
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "flightId": {
+                  "type": "string",
+                  "example": "...Flight.objectId..."
+                },
+                "passengers": {
+                  "type": "array",
+                  "example": [
+                    "...Passenger.objectId...",
+                    {
+                      "firstName": "string",
+                      "lastName": "string",
+                      "email": "string:email"
+                    }
+                  ],
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "firstName": {
+                        "type": "string",
+                        "example": "string"
+                      },
+                      "lastName": {
+                        "type": "string",
+                        "example": "string"
+                      },
+                      "email": {
+                        "type": "string",
+                        "example": "string:email"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          }
+        }
+      }
+    },
+    "/reservations/{id}": {
+      "get": {
+        "tags": [
+          "Reservations"
+        ],
+        "summary": "Get Single Reservation",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Reservations"
+        ],
+        "summary": "Update Reservation",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "flightId": {
+                  "type": "string",
+                  "example": "...Flight.objectId..."
+                },
+                "passengers": {
+                  "type": "array",
+                  "example": [
+                    "...Passenger.objectId...",
+                    {
+                      "firstName": "string",
+                      "lastName": "string",
+                      "email": "string:email"
+                    }
+                  ],
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "firstName": {
+                        "type": "string",
+                        "example": "string"
+                      },
+                      "lastName": {
+                        "type": "string",
+                        "example": "string"
+                      },
+                      "email": {
+                        "type": "string",
+                        "example": "string:email"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Accepted"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Reservations"
+        ],
+        "summary": "Delete Reservation",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "createdId": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Reservations"
+        ],
+        "summary": "Update Reservation",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "flightId": {
+                  "type": "string",
+                  "example": "...Flight.objectId..."
+                },
+                "passengers": {
+                  "type": "array",
+                  "example": [
+                    "...Passenger.objectId...",
+                    {
+                      "firstName": "string",
+                      "lastName": "string",
+                      "email": "string:email"
+                    }
+                  ],
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "firstName": {
+                        "type": "string",
+                        "example": "string"
+                      },
+                      "lastName": {
+                        "type": "string",
+                        "example": "string"
+                      },
+                      "email": {
+                        "type": "string",
+                        "example": "string:email"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Accepted"
+          }
+        }
+      }
+    },
+    "/reservations/{id}/passengers": {
+      "get": {
+        "tags": [
+          "Reservations"
+        ],
+        "summary": "List Passengers of Reservation",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "/auth/login": {
+      "type": "object",
+      "properties": {
+        "username": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "example": "String"
+            },
+            "required": {
+              "type": "boolean",
+              "example": true
+            }
+          }
+        },
+        "password": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "example": "String"
+            },
+            "required": {
+              "type": "boolean",
+              "example": true
+            }
+          }
+        }
+      }
+    },
+    "/auth/refresh": {
+      "type": "object",
+      "properties": {
+        "token.refresh": {
+          "type": "object",
+          "properties": {
+            "description": {
+              "type": "string",
+              "example": "{token: {refresh: ...}}"
+            },
+            "type": {
+              "type": "string",
+              "example": "String"
+            },
+            "required": {
+              "type": "boolean",
+              "example": true
+            }
+          }
+        }
+      }
+    },
+    "User": {
+      "type": "object",
+      "properties": {
+        "username": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "function"
+            },
+            "trim": {
+              "type": "boolean",
+              "example": true
+            },
+            "required": {
+              "type": "boolean",
+              "example": true
+            },
+            "unique": {
+              "type": "boolean",
+              "example": true
+            }
+          }
+        },
+        "password": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "function"
+            },
+            "trim": {
+              "type": "boolean",
+              "example": true
+            },
+            "required": {
+              "type": "boolean",
+              "example": true
+            },
+            "unique": {
+              "type": "boolean",
+              "example": false
+            },
+            "set": {
+              "type": "function"
+            }
+          }
+        },
+        "email": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "function"
+            },
+            "trim": {
+              "type": "boolean",
+              "example": true
+            },
+            "required": {
+              "type": "boolean",
+              "example": true
+            },
+            "unique": {
+              "type": "boolean",
+              "example": true
+            },
+            "validate": {
+              "type": "array",
+              "example": [
+                null,
+                "Email type is not correct"
+              ],
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "isActive": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "function"
+            },
+            "default": {
+              "type": "boolean",
+              "example": true
+            }
+          }
+        },
+        "isStaff": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "function"
+            },
+            "default": {
+              "type": "boolean",
+              "example": false
+            }
+          }
+        },
+        "isAdmin": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "function"
+            },
+            "default": {
+              "type": "boolean",
+              "example": false
+            }
+          }
+        }
+      }
+    },
+    "Flight": {
+      "type": "object",
+      "properties": {
+        "flightNumber": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "function"
+            },
+            "trim": {
+              "type": "boolean",
+              "example": true
+            },
+            "required": {
+              "type": "boolean",
+              "example": true
+            },
+            "unique": {
+              "type": "boolean",
+              "example": true
+            }
+          }
+        },
+        "airline": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "function"
+            },
+            "trim": {
+              "type": "boolean",
+              "example": true
+            },
+            "required": {
+              "type": "boolean",
+              "example": true
+            }
+          }
+        },
+        "departure": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "function"
+            },
+            "trim": {
+              "type": "boolean",
+              "example": true
+            },
+            "required": {
+              "type": "boolean",
+              "example": true
+            }
+          }
+        },
+        "departureDate": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "function"
+            },
+            "required": {
+              "type": "boolean",
+              "example": true
+            }
+          }
+        },
+        "arrival": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "function"
+            },
+            "trim": {
+              "type": "boolean",
+              "example": true
+            },
+            "required": {
+              "type": "boolean",
+              "example": true
+            }
+          }
+        },
+        "arrivalDate": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "function"
+            },
+            "required": {
+              "type": "boolean",
+              "example": true
+            }
+          }
+        },
+        "createdId": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "function"
+            },
+            "ref": {
+              "type": "string",
+              "example": "User"
+            },
+            "required": {
+              "type": "boolean",
+              "example": true
+            }
+          }
+        }
+      }
+    },
+    "Passenger": {
+      "type": "object",
+      "properties": {
+        "firstName": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "function"
+            },
+            "trim": {
+              "type": "boolean",
+              "example": true
+            },
+            "required": {
+              "type": "boolean",
+              "example": true
+            }
+          }
+        },
+        "lastName": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "function"
+            },
+            "trim": {
+              "type": "boolean",
+              "example": true
+            },
+            "required": {
+              "type": "boolean",
+              "example": true
+            }
+          }
+        },
+        "gender": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "function"
+            },
+            "enum": {
+              "type": "array",
+              "items": {
+                "properties": {
+                  "1": {
+                    "type": "string"
+                  },
+                  "2": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "default": {}
+          }
+        },
+        "email": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "function"
+            },
+            "trim": {
+              "type": "boolean",
+              "example": true
+            },
+            "required": {
+              "type": "boolean",
+              "example": true
+            },
+            "unique": {
+              "type": "boolean",
+              "example": true
+            },
+            "validate": {
+              "type": "array",
+              "example": [
+                null,
+                "Email type is not correct"
+              ],
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "createdId": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "function"
+            },
+            "ref": {
+              "type": "string",
+              "example": "User"
+            },
+            "required": {
+              "type": "boolean",
+              "example": true
+            }
+          }
+        }
+      }
+    },
+    "Reservation": {
+      "type": "object",
+      "properties": {
+        "flightId": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "function"
+            },
+            "ref": {
+              "type": "string",
+              "example": "Flight"
+            },
+            "required": {
+              "type": "boolean",
+              "example": true
+            }
+          }
+        },
+        "passengers": {
+          "type": "array",
+          "example": [],
+          "items": {}
+        },
+        "createdId": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "function"
+            },
+            "ref": {
+              "type": "string",
+              "example": "User"
+            },
+            "required": {
+              "type": "boolean",
+              "example": true
+            }
+          }
+        }
+      }
+    }
+  },
+  "security": [
+    {
+      "JWT": true
+    }
+  ]
+}
