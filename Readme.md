@@ -11,7 +11,7 @@
 -----
 
 ### ER (Entity Relationship Diagram) Diagram
-<img src="./src/img/erdPizzaAPI.png" width="650" height="450" alt="ERD"></img> 
+<img src="./src/img/erdflightAPI.png" width="650" height="450" alt="ERD"></img> 
 
 ### Steps to be taken before running the project.
 
