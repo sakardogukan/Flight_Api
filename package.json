@@ -1,0 +1,29 @@
+{
+  "name": "flight_api",
+  "version": "1.0.0",
+  "description": "FlightApi is node.js project. Used Tech: Node.Js | Express.Js | Mongoose - MongoDB SQL | Authorization And Permissions with JWT (Json Web Token) | Password Crypto | Documentation: Swagger/Redoc/Json | Logging",
+  "main": "index.js",
+  "title": "FlightApi",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon",
+    "debug": "set DEBUG=* & nodemon"
+  },
+  "keywords": [],
+  "author": "DGKN",
+  "email": "sakardogukan@gmail.com",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "crypto": "^1.0.1",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "express-async-errors": "^3.1.1",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.0.1",
+    "morgan": "^1.10.0",
+    "redoc-express": "^2.1.0",
+    "swagger-autogen": "^2.23.7",
+    "swagger-ui-express": "^5.0.0"
+  }
+}
