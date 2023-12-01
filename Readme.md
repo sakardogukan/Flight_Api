@@ -30,7 +30,7 @@ $ echo MONGODB=mongodb://127.0.0.1:27017/flightApi >> .env
 $ cp ./env-sample ./.env
 $ nodemon // * Running *
 
-- The synchronization function in line xxxx of the index.js file should be run once and disabled again.
+- The synchronization function in line 64 of the index.js file should be run once and disabled again.
 - Testing is done with the following URL queries via Thunder Client or Postman or Browser. If changes are made to the Swagger file, the "$ node swagger.js" command should be used in the terminal.
 ```
 
